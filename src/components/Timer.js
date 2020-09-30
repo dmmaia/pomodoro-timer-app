@@ -51,11 +51,11 @@ const Timer = () => {
       </View>
 
       <View style={styles.boxTimer}>
-        <Text style={styles.timerField}>
+        <Text style={styles.minutesField}>
           {zeroforMinutes}
           {minutes}
         </Text>
-        <Text style={styles.timerField}>
+        <Text style={styles.secondsField}>
           {zeroforSeconds}
           {seconds}
         </Text>
@@ -108,8 +108,13 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 21,
   },
-  timerField: {
+  minutesField: {
     color: 'white',
     fontSize: 75,
+  },
+  secondsField: {
+    color: 'white',
+    fontSize: 55,
+    marginLeft: 10,
   },
 });

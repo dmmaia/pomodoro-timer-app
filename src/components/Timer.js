@@ -4,7 +4,7 @@ import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 const Timer = () => {
   const [minutes, setMinutes] = useState(25);
   const [seconds, setSeconds] = useState(0);
-  const [status, setStatus] = useState(true);
+  const [status, setStatus] = useState(false);
 
   const [zeroforSeconds, setZeroForSeconds] = useState('0');
   const [zeroforMinutes, setZeroForMinutes] = useState('');
@@ -19,9 +19,6 @@ const Timer = () => {
         setSeconds(seconds === 0 ? 59 : seconds - 1);
 
         setZeroForMinutes(minutes < 10 ? '0' : '');
-        if (minutes === 0 && seconds === 0) {
-          setZeroForMinutes('');
-        }
         setMinutes(seconds === 0 ? minutes - 1 : minutes);
       }
     }, 1000);
@@ -29,6 +26,7 @@ const Timer = () => {
     if (minutes === 0 && seconds === 0) {
       setStatus(false);
       setMinutes(25);
+      setZeroForMinutes('');
       setSeconds(0);
       alert('Rest Time!!!');
     }
@@ -36,16 +34,25 @@ const Timer = () => {
     return () => clearInterval(interval);
   }, [minutes, seconds, status]);
 
+  function handleStop() {
+    setStatus(false);
+    setMinutes(25);
+    setSeconds(0);
+    setZeroForSeconds('0');
+  }
+
   return (
     <View style={styles.mainView}>
       <View style={styles.boxButton}>
         <TouchableOpacity
           style={styles.pauseButton}
-          onClick={() => setStatus(false)}>
+          onPress={() => setStatus(false)}>
           <Text style={styles.buttonText}>Pause</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.stopButton}>
+        <TouchableOpacity
+          style={styles.stopButton}
+          onPress={() => handleStop()}>
           <Text style={styles.buttonText}>Stop</Text>
         </TouchableOpacity>
       </View>
@@ -64,7 +71,7 @@ const Timer = () => {
       <View style={styles.boxButton}>
         <TouchableOpacity
           style={styles.startButton}
-          onClick={() => setStatus(true)}>
+          onPress={() => setStatus(true)}>
           <Text style={styles.buttonText}>Start</Text>
         </TouchableOpacity>
       </View>

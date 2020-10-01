@@ -2,9 +2,10 @@ import React, {useState, useEffect} from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 
 const Timer = () => {
-  const [minutes, setMinutes] = useState(25);
-  const [seconds, setSeconds] = useState(0);
+  const [minutes, setMinutes] = useState(0);
+  const [seconds, setSeconds] = useState(2);
   const [status, setStatus] = useState(false);
+  const [rest, setRest] = useState(true);
 
   const [zeroforSeconds, setZeroForSeconds] = useState('0');
   const [zeroforMinutes, setZeroForMinutes] = useState('');
@@ -24,11 +25,20 @@ const Timer = () => {
     }, 1000);
 
     if (minutes === 0 && seconds === 0) {
-      setStatus(false);
-      setMinutes(25);
-      setZeroForMinutes('');
+      if (rest) {
+        setMinutes(5);
+        setZeroForMinutes('0');
+        alert('Rest Time!!!');
+      } else {
+        setMinutes(25);
+        setZeroForMinutes('');
+        alert('Lets do it!!!');
+      }
       setSeconds(0);
-      alert('Rest Time!!!');
+
+      setTimeout(() => {
+        setRest(rest === true ? false : true);
+      }, 1000);
     }
 
     return () => clearInterval(interval);
@@ -38,6 +48,7 @@ const Timer = () => {
     setStatus(false);
     setMinutes(25);
     setSeconds(0);
+    setRest(true);
     setZeroForSeconds('0');
   }
 

@@ -111,16 +111,19 @@ const styles = StyleSheet.create({
     padding: 10,
     backgroundColor: 'green',
     marginTop: 36,
+    borderRadius: 5,
   },
   pauseButton: {
     padding: 5,
     backgroundColor: 'orange',
     marginTop: 15,
+    borderRadius: 5,
   },
   stopButton: {
     padding: 5,
     backgroundColor: 'red',
     marginTop: 15,
+    borderRadius: 5,
   },
   buttonText: {
     color: 'white',

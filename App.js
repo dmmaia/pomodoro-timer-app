@@ -14,15 +14,10 @@ import Timer from './src/components/Timer';
 function App() {
   return (
     <>
-      <SafeAreaView styles={styles.content}>
+      <SafeAreaView>
         <Timer />
       </SafeAreaView>
     </>
   );
 }
-
-const styles = StyleSheet.create({
-  content: {},
-});
-
 export default App;

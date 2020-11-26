@@ -2,8 +2,8 @@ import React, {useState, useEffect} from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 
 const Timer = () => {
-  const [minutes, setMinutes] = useState(0);
-  const [seconds, setSeconds] = useState(2);
+  const [minutes, setMinutes] = useState(25);
+  const [seconds, setSeconds] = useState(0);
   const [status, setStatus] = useState(false);
   const [rest, setRest] = useState(true);
 
@@ -28,11 +28,9 @@ const Timer = () => {
       if (rest) {
         setMinutes(5);
         setZeroForMinutes('0');
-        alert('Rest Time!!!');
       } else {
         setMinutes(25);
         setZeroForMinutes('');
-        alert('Lets do it!!!');
       }
       setSeconds(0);
 
@@ -42,7 +40,7 @@ const Timer = () => {
     }
 
     return () => clearInterval(interval);
-  }, [minutes, seconds, status]);
+  }, [minutes, rest, seconds, status]);
 
   function handleStop() {
     setStatus(false);

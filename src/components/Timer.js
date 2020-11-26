@@ -1,5 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import Icon from 'react-native-vector-icons/AntDesign';
+import IconAw from 'react-native-vector-icons/FontAwesome';
 
 const Timer = () => {
   const [minutes, setMinutes] = useState(25);
@@ -52,20 +54,6 @@ const Timer = () => {
 
   return (
     <View style={styles.mainView}>
-      <View style={styles.boxButton}>
-        <TouchableOpacity
-          style={styles.pauseButton}
-          onPress={() => setStatus(false)}>
-          <Text style={styles.buttonText}>Pause</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={styles.stopButton}
-          onPress={() => handleStop()}>
-          <Text style={styles.buttonText}>Stop</Text>
-        </TouchableOpacity>
-      </View>
-
       <View style={styles.boxTimer}>
         <Text style={styles.minutesField}>
           {zeroforMinutes}
@@ -79,9 +67,20 @@ const Timer = () => {
 
       <View style={styles.boxButton}>
         <TouchableOpacity
+          style={styles.pauseButton}
+          onPress={() => setStatus(false)}>
+          <Icon name="pausecircle" size={70} color="orange" />
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.stopButton}
+          onPress={() => handleStop()}>
+          <IconAw name="stop" size={70} color="red" />
+        </TouchableOpacity>
+
+        <TouchableOpacity
           style={styles.startButton}
           onPress={() => setStatus(true)}>
-          <Text style={styles.buttonText}>Start</Text>
+          <Icon name="play" size={70} color="green" />
         </TouchableOpacity>
       </View>
     </View>
@@ -92,36 +91,28 @@ export default Timer;
 
 const styles = StyleSheet.create({
   mainView: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
     height: 100 + '%',
     backgroundColor: 'black',
     paddingTop: 150,
   },
   boxButton: {
     marginTop: 50,
-    flexDirection: 'column',
+    flexDirection: 'row',
   },
   boxTimer: {
-    flexDirection: 'column',
+    flexDirection: 'row',
   },
   startButton: {
-    padding: 10,
-    backgroundColor: 'green',
-    marginTop: 36,
-    borderRadius: 5,
+    marginLeft: 50,
   },
   pauseButton: {
-    padding: 5,
-    backgroundColor: 'orange',
-    marginTop: 15,
-    borderRadius: 5,
+    margin: 0,
   },
   stopButton: {
-    padding: 5,
-    backgroundColor: 'red',
-    marginTop: 15,
-    borderRadius: 5,
+    marginLeft: 50,
   },
   buttonText: {
     color: 'white',
@@ -129,11 +120,12 @@ const styles = StyleSheet.create({
   },
   minutesField: {
     color: 'white',
-    fontSize: 75,
+    fontSize: 90,
   },
   secondsField: {
     color: 'white',
-    fontSize: 55,
+    fontSize: 75,
     marginLeft: 10,
+    marginTop: 10,
   },
 });

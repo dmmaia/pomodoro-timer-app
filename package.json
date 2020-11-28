@@ -1,6 +1,6 @@
 {
   "name": "pomodorotimer",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "private": true,
   "scripts": {
     "android": "react-native run-android",
@@ -12,6 +12,7 @@
   "dependencies": {
     "react": "16.13.1",
     "react-native": "0.63.3",
+    "react-native-notification-sounds": "^0.5.2",
     "react-native-vector-icons": "^7.1.0"
   },
   "devDependencies": {

@@ -10,6 +10,8 @@ target 'pomodorotimer' do
 
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
+  pod 'react-native-notification-sounds', :path => '../node_modules/react-native-notification-sounds'
+
   target 'pomodorotimerTests' do
     inherit! :complete
     # Pods for testing

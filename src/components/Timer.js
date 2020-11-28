@@ -5,10 +5,15 @@ import {
   StyleSheet,
   TouchableOpacity,
   Vibration,
+  StatusBar,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
 import IconAw from 'react-native-vector-icons/FontAwesome';
 import IconEnt from 'react-native-vector-icons/Entypo';
+import NotificationSounds, {
+  playSampleSound,
+  stopSampleSound,
+} from 'react-native-notification-sounds';
 
 const Timer = () => {
   const [minutes, setMinutes] = useState(25);
@@ -37,9 +42,19 @@ const Timer = () => {
       if (rest) {
         setMinutes(5);
         setZeroForMinutes('0');
+        NotificationSounds.getNotifications('notification').then(
+          (soundsList) => {
+            playSampleSound(soundsList[1]);
+          },
+        );
       } else {
         setMinutes(25);
         setZeroForMinutes('');
+        NotificationSounds.getNotifications('notification').then(
+          (soundsList) => {
+            playSampleSound(soundsList[2]);
+          },
+        );
       }
       setSeconds(0);
       Vibration.vibrate();
@@ -63,6 +78,12 @@ const Timer = () => {
 
   return (
     <View style={styles.mainView}>
+      <StatusBar
+        barStyle="light-content"
+        hidden={false}
+        backgroundColor="#000000"
+        translucent={true}
+      />
       <View style={styles.boxTimer}>
         <Text style={styles.minutesField}>
           {zeroforMinutes}
@@ -114,6 +135,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     height: 100 + '%',
     backgroundColor: 'black',
+
     paddingTop: 150,
   },
   boxButton: {
@@ -129,13 +151,13 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
   startButton: {
-    marginLeft: 25,
+    marginLeft: 30,
   },
   pauseButton: {
     marginLeft: 0,
   },
   stopButton: {
-    marginLeft: 45,
+    marginLeft: 41,
     marginTop: 200,
   },
   buttonText: {
@@ -151,5 +173,8 @@ const styles = StyleSheet.create({
     fontSize: 75,
     marginLeft: 10,
     marginTop: 10,
+  },
+  statusBar: {
+    backgroundColor: 'black',
   },
 });
